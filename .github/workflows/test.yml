@@ -21,6 +21,12 @@ jobs:
           xterm 2>/dev/null &
           xwd -root -silent | convert xwd:- png:screenshot.png
           
+      - name: upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: screenshot
+          path: screenshot.png
+          
       
     
 
