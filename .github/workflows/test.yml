@@ -7,7 +7,6 @@ on:
 
 jobs:
   linuxRun:
-    needs: linuxXlinux
     runs-on: ubuntu-18.04
     
     steps:
