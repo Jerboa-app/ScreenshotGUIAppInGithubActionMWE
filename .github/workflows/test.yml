@@ -11,12 +11,13 @@ jobs:
     
     steps:
       - name: Install dependencies
-        run: sudo apt-get install -y xorg xvfb x11-apps imagemagick
+        run: sudo apt-get install -y xorg xvfb x11-apps imagemagick xterm
 
       - name: launch and screenshot
         run: |
           export DISPLAY=:99
           sudo Xvfb :99 -screen 0 1024x768x8 &
+          xterm 2>/dev/null &
           xwd -root -silent | convert xwd:- png:screenshot.png
           
       
