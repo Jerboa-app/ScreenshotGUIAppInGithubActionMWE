@@ -1,0 +1,27 @@
+name: GLXGears
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  linuxRun:
+    runs-on: ubuntu-18.04
+    
+    steps:
+      - name: Install dependencies
+        run: sudo apt-get install -y xvfb x11-apps imagemagick xterm mesa-utils
+
+      - name: launch and screenshot
+        run: |
+          export DISPLAY=:99
+          sudo Xvfb :99 -screen 0 1024x768x8 &
+          sleep 5
+          glxgears
+          
+      - name: upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: screenshot
+          path: screenshot.png
