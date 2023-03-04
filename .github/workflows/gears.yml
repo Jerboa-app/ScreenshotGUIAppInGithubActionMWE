@@ -1,4 +1,4 @@
-name: xterm
+name: GLXGears
 
 on:
   push:
@@ -11,23 +11,20 @@ jobs:
     
     steps:
       - name: Install dependencies
-        run: sudo apt-get install -y xvfb x11-apps imagemagick xterm
+        run: sudo apt-get install -y xvfb x11-apps imagemagick mesa-utils 
 
       - name: launch and screenshot
         run: |
-          export DISPLAY=:99
-          sudo Xvfb :99 -screen 0 1024x768x8 &
+          Xvfb :5 -screen 0 800x600x24 &
           sleep 5
-          xterm -hold -e echo "Checkout the artifact!" 2>/dev/null &
+          export DISPLAY=:5
+          glxgears &
           sleep 5
           xwd -root -silent | convert xwd:- png:screenshot.png
+          
           
       - name: upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: screenshot
           path: screenshot.png
-          
-      
-    
-
