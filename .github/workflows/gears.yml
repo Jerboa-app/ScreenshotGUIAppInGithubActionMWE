@@ -19,6 +19,7 @@ jobs:
           sleep 5
           export DISPLAY=:5
           glxgears &
+          sleep 5
           xwd -root -silent | convert xwd:- png:screenshot.png
           
           
