@@ -15,10 +15,9 @@ jobs:
 
       - name: launch and screenshot
         run: |
-          export __GLX_VENDOR_LIBRARY_NAME=mesa
-          export DISPLAY=:99
-          sudo Xvfb :99 -screen 0 1024x768x8 &
+          Xvfb :5 -screen 0 800x600x24 &
           sleep 5
+          export DISPLAY=:5
           glxgears
           
       - name: upload artifact
