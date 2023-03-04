@@ -15,6 +15,7 @@ jobs:
 
       - name: launch and screenshot
         run: |
+          export __GLX_VENDOR_LIBRARY_NAME=mesa
           export DISPLAY=:99
           sudo Xvfb :99 -screen 0 1024x768x8 &
           sleep 5
