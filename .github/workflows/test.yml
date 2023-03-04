@@ -1,4 +1,4 @@
-name: Hop
+name: xterm
 
 on:
   push:
