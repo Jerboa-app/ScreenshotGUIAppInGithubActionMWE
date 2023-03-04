@@ -18,7 +18,9 @@ jobs:
           Xvfb :5 -screen 0 800x600x24 &
           sleep 5
           export DISPLAY=:5
-          glxgears
+          glxgears &
+          xwd -root -silent | convert xwd:- png:screenshot.png
+          
           
       - name: upload artifact
         uses: actions/upload-artifact@v3
